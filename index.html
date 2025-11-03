@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AlphaLearner — Coming Soon</title>
+  <meta name="description" content="AlphaLearner — AI-powered study assistant for students. Launching soon." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7c3aed;
+      --accent-2:#06b6d4;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      color-scheme: dark;
+      font-family: 'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #071029 0%, #071022 60%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      line-height:1.4;
+    }
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius:16px;
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+    }
+
+    @media (max-width:920px){
+      .container{grid-template-columns:1fr; padding:20px}
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:14px;
+      margin-bottom:12px;
+    }
+    .logo{
+      width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      font-weight:800; font-size:20px; color:white; box-shadow: 0 6px 18px rgba(124,58,237,0.18);
+    }
+    h1{margin:0; font-size:28px}
+    p.lead{margin:10px 0 18px; color:var(--muted); max-width:55ch}
+
+    .features{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+    .feature{background:var(--glass); padding:10px 12px; border-radius:10px; font-size:13px; color:var(--muted)}
+
+    /* Right column */
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px; padding:20px; border:1px solid rgba(255,255,255,0.03);
+      text-align:center;
+    }
+
+    .timer{display:flex; justify-content:space-between; gap:10px; margin:18px 0}
+    .timebox{flex:1; background:rgba(255,255,255,0.02); padding:14px; border-radius:8px}
+    .timebox h2{margin:0;font-size:20px}
+    .timebox span{display:block; margin-top:6px; color:var(--muted); font-size:13px}
+
+    .email-form{display:flex; gap:8px; margin-top:14px}
+    .email-form input[type="email"]{flex:1;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-size:14px}
+    .email-form button{padding:12px 16px;border-radius:8px;border:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-weight:600;cursor:pointer}
+
+    .socials{display:flex; gap:10px; justify-content:center; margin-top:12px}
+    .socials a{opacity:0.9;text-decoration:none;color:var(--muted);font-size:14px}
+
+    footer{display:flex; justify-content:space-between; align-items:center; margin-top:16px; color:var(--muted); font-size:13px}
+    @media (max-width:920px){footer{flex-direction:column; gap:8px; align-items:flex-start}}
+
+    .small{font-size:12px; color:var(--muted)}
+
+    /* subtle animation */
+    .logo, .timebox{transform-origin:center; transition:transform .28s ease}
+    .logo:hover{transform:translateY(-4px) scale(1.03)}
+    .timebox:hover{transform:translateY(-6px)}
+
+  </style>
+</head>
+<body>
+  <main class="container" role="main">
+    <section>
+      <div class="brand">
+        <div class="logo">AL</div>
+        <div>
+          <div style="font-weight:700">AlphaLearner</div>
+          <div class="small">AI-powered learning for students</div>
+        </div>
+      </div>
+
+      <h1>Something great is coming — Blitz Med & AlphaLearner</h1>
+      <p class="lead">We’re building Blitz Med inside the AlphaLearner family — an exam-focused, AI-powered study assistant for medical students in Nigeria and beyond. Launching soon with adaptive quizzes, high-yield notes and an MCQ bank.</p>
+
+      <div class="features" aria-hidden="false">
+        <div class="feature">Adaptive daily quizzes</div>
+        <div class="feature">Offline-friendly lessons</div>
+        <div class="feature">Past questions & answers</div>
+        <div class="feature">AI-powered explanations</div>
+      </div>
+
+      <footer>
+        <div class="small">Built for Nigerian students • Works offline • Naira payments</div>
+        <div class="small">© <span id="year"></span> AlphaLearner</div>
+      </footer>
+    </section>
+
+    <aside class="panel" aria-labelledby="launch-heading">
+      <h3 id="launch-heading">Launching at</h3>
+      <p style="margin:6px 0 0; color:var(--muted)">10:00 AM — November 14, 2025 (WAT)</p>
+
+      <div class="timer" role="timer" aria-live="polite" aria-atomic="true" style="margin-top:18px">
+        <div class="timebox">
+          <h2 id="days">0</h2>
+          <span>Days</span>
+        </div>
+        <div class="timebox">
+          <h2 id="hours">0</h2>
+          <span>Hours</span>
+        </div>
+        <div class="timebox">
+          <h2 id="minutes">0</h2>
+          <span>Minutes</span>
+        </div>
+        <div class="timebox">
+          <h2 id="seconds">0</h2>
+          <span>Seconds</span>
+        </div>
+      </div>
+
+      <div class="email-form" role="form" aria-label="Notify me">
+        <input id="email" type="email" placeholder="Enter your email" aria-label="Email address">
+        <button id="notify">Notify me</button>
+      </div>
+
+      <div class="socials" aria-hidden="false">
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="WhatsApp">WhatsApp</a>
+      </div>
+
+      <div id="status" class="small" style="margin-top:10px"></div>
+    </aside>
+  </main>
+
+  <script>
+    // Set copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Target: 10:00 AM, November 14, 2025 in West Africa Time (UTC+01:00)
+    const target = new Date('2025-11-14T10:00:00+01:00');
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const status = document.getElementById('status');
+
+    function updateTimer(){
+      const now = new Date();
+      // difference in ms
+      const diff = target - now;
+      if(diff <= 0){
+        daysEl.textContent = '0'; hoursEl.textContent = '0'; minutesEl.textContent = '0'; secondsEl.textContent = '0';
+        status.textContent = '🎉 We have launched! Refresh to see updates.';
+        clearInterval(timerInterval);
+        return;
+      }
+
+      const sec = Math.floor(diff / 1000) % 60;
+      const min = Math.floor(diff / (1000 * 60)) % 60;
+      const hrs = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      daysEl.textContent = String(days);
+      hoursEl.textContent = String(hrs).padStart(2,'0');
+      minutesEl.textContent = String(min).padStart(2,'0');
+      secondsEl.textContent = String(sec).padStart(2,'0');
+    }
+
+    // Update every second
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    // Email capture (mock)
+    document.getElementById('notify').addEventListener('click', function(){
+      const email = document.getElementById('email').value.trim();
+      if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+        status.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      // Mock submission — replace with real API call
+      status.textContent = 'Thanks — we\'ll notify you at ' + email + '!';
+      document.getElementById('email').value = '';
+    });
+
+    // Accessibility: announce when countdown hits less than 1 day
+    const liveRegion = document.createElement('div');
+    liveRegion.setAttribute('aria-live','polite');
+    liveRegion.setAttribute('style','position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;');
+    document.body.appendChild(liveRegion);
+
+    setInterval(function(){
+      const now = new Date();
+      const diff = target - now;
+      if(diff <= 0) return;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      if(days <= 1){
+        liveRegion.textContent = 'Less than 1 day to launch.';
+      }
+    }, 60000);
+
+  </script>
+</body>
+</html>
