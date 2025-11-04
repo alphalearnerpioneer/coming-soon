@@ -7,21 +7,24 @@
     <meta name="description" content="AlphaLearner - Redefining learning for African students through AI-powered quizzes, smart summaries, and interactive digital study companion.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --accent: #10b981;
-            --accent-light: #34d399;
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --accent: #4cc9f0;
+            --accent-light: #56cfe1;
+            --success: #4ade80;
+            --warning: #f59e0b;
             --dark: #0f172a;
             --darker: #0a0f1c;
             --light: #f8fafc;
-            --gray: #64748b;
+            --gray: #94a3b8;
             --gray-light: #cbd5e1;
             --card-bg: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
             --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --glow: 0 0 20px rgba(67, 97, 238, 0.3);
         }
 
         * {
@@ -45,11 +48,62 @@
             padding: 0 20px;
         }
 
+        /* Floating Background Elements */
+        .floating-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .circle-1 {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            left: -200px;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            animation: float 30s infinite ease-in-out reverse;
+        }
+
+        .circle-3 {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 70%;
+            background: radial-gradient(circle, var(--success) 0%, transparent 70%);
+            animation: float 20s infinite ease-in-out;
+        }
+
         /* Header Styles */
         header {
             padding: 30px 0;
             position: relative;
             z-index: 10;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
@@ -59,84 +113,117 @@
         }
 
         .logo-icon {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 20px;
+            font-size: 22px;
             color: white;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow), var(--glow);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .logo-text {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
             background: linear-gradient(to right, var(--primary), var(--accent-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
+        .logo-tagline {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--light);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
         /* Hero Section */
         .hero {
-            padding: 80px 0 60px;
+            padding: 100px 0 80px;
             text-align: center;
             position: relative;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
 
-        .tagline {
+        .welcome-tag {
             display: inline-block;
-            background: rgba(37, 99, 235, 0.1);
-            color: var(--primary);
-            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 10px 20px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(37, 99, 235, 0.2);
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            animation: pulse 2s infinite;
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #f8fafc, #cbd5e1);
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #f8fafc, #cbd5e1, #94a3b8);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -144,131 +231,251 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--gray-light);
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            box-shadow: var(--shadow), var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
         }
 
         /* Countdown Timer */
+        .countdown-section {
+            margin: 60px 0;
+        }
+
+        .countdown-title {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             margin: 40px 0;
         }
 
         .countdown-item {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px 15px;
-            min-width: 100px;
+            border-radius: 16px;
+            padding: 25px 20px;
+            min-width: 120px;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
         .countdown-value {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             color: var(--light);
             line-height: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .countdown-label {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 8px;
+            margin-top: 10px;
+            font-weight: 600;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .countdown {
-                gap: 10px;
+                gap: 15px;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 20px 10px;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .countdown {
+                flex-wrap: wrap;
             }
             
             .countdown-item {
                 min-width: 70px;
-                padding: 15px 10px;
+                padding: 15px 8px;
             }
             
             .countdown-value {
-                font-size: 1.75rem;
+                font-size: 1.8rem;
             }
         }
 
         /* Features Section */
         .features {
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 60px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
         .feature-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 35px 30px;
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 12px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: 25px;
+            font-size: 28px;
             color: white;
+            box-shadow: var(--shadow);
         }
 
         .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
         }
 
         .feature-description {
             color: var(--gray-light);
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* CTA Section */
         .cta {
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.05) 100%);
             border-radius: 30px;
-            margin: 40px 0;
+            margin: 60px 0;
             position: relative;
             overflow: hidden;
         }
@@ -280,42 +487,49 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             z-index: 0;
         }
 
         .cta-content {
             position: relative;
             z-index: 1;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .cta-title {
-            font-size: 2.25rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 20px;
+            font-family: 'Outfit', sans-serif;
         }
 
         .cta-description {
             color: var(--gray-light);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
 
         .email-form {
             display: flex;
             max-width: 500px;
             margin: 0 auto;
-            gap: 10px;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
         }
 
         .email-input {
             flex: 1;
-            padding: 15px 20px;
+            padding: 16px 20px;
             border-radius: 10px;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            background: transparent;
             color: var(--light);
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -323,8 +537,7 @@
 
         .email-input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .email-input::placeholder {
@@ -332,38 +545,46 @@
         }
 
         .notify-btn {
-            padding: 15px 30px;
+            padding: 16px 32px;
             border-radius: 10px;
             border: none;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1rem;
             white-space: nowrap;
+            box-shadow: var(--shadow);
         }
 
         .notify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         }
 
         .form-status {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            min-height: 20px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            min-height: 24px;
+            transition: all 0.3s ease;
         }
 
         @media (max-width: 640px) {
             .email-form {
                 flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+            
+            .notify-btn {
+                width: 100%;
             }
         }
 
         /* Footer */
         footer {
-            padding: 60px 0 40px;
+            padding: 80px 0 50px;
             border-top: 1px solid var(--border);
         }
 
@@ -373,9 +594,16 @@
             align-items: center;
         }
 
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .copyright {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            margin-top: 10px;
         }
 
         .social-links {
@@ -384,112 +612,212 @@
         }
 
         .social-link {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
             color: var(--gray);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .social-link:hover {
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .footer-content {
                 flex-direction: column;
-                gap: 20px;
+                gap: 30px;
                 text-align: center;
+            }
+            
+            .footer-logo {
+                align-items: center;
             }
         }
 
         /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .fade-in {
+            opacity: 0;
             animation: fadeIn 0.8s ease forwards;
         }
 
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
 
         /* Utility Classes */
         .text-center { text-align: center; }
         .mt-20 { margin-top: 20px; }
         .mb-20 { margin-bottom: 20px; }
         .opacity-0 { opacity: 0; }
+        
+        /* Student Testimonial */
+        .testimonial {
+            max-width: 600px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--gray-light);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--light);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Background Elements -->
+    <div class="floating-bg">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+        <div class="floating-circle circle-3"></div>
+    </div>
+
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="logo">
-                <div class="logo-icon">AL</div>
-                <div class="logo-text">AlphaLearner</div>
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">AL</div>
+                    <div>
+                        <div class="logo-text">AlphaLearner</div>
+                        <div class="logo-tagline">AI-Powered Learning for Students</div>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link">About</a>
+                    <a href="#" class="nav-link">Features</a>
+                    <a href="#" class="nav-link">Contact</a>
+                </div>
             </div>
         </header>
 
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <div class="tagline fade-in">AI-Powered Study Assistant</div>
-                <h1 class="fade-in delay-1">Redefining Learning for African Students</h1>
+                <div class="welcome-tag fade-in">🎉 Welcome to the Future of Learning!</div>
+                <h1 class="fade-in delay-1">Study Smarter, Not Harder with AlphaLearner</h1>
                 <p class="hero-description fade-in delay-2">
-                    AlphaLearner is an AI-powered study assistant designed to help students prepare effectively for exams with personalized quizzes, smart summaries, and interactive learning tools.
+                    AlphaLearner is your AI-powered study companion designed specifically for African students. We're building the most effective, personalized learning experience to help you excel in your exams and achieve academic success.
                 </p>
                 
-                <!-- Countdown Timer -->
-                <div class="countdown fade-in delay-3">
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="days">00</div>
-                        <div class="countdown-label">Days</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="hours">00</div>
-                        <div class="countdown-label">Hours</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="minutes">00</div>
-                        <div class="countdown-label">Minutes</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-value" id="seconds">00</div>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
+                <div class="hero-cta fade-in delay-3">
+                    <button class="btn btn-primary">
+                        <span>Get Early Access</span>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span>Watch Demo</span>
+                    </button>
                 </div>
                 
-                <div class="fade-in delay-3">
+                <!-- Countdown Timer -->
+                <div class="countdown-section fade-in delay-4">
+                    <div class="countdown-title">We're launching in:</div>
+                    <div class="countdown">
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="days">00</div>
+                            <div class="countdown-label">Days</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="hours">00</div>
+                            <div class="countdown-label">Hours</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="minutes">00</div>
+                            <div class="countdown-label">Minutes</div>
+                        </div>
+                        <div class="countdown-item">
+                            <div class="countdown-value" id="seconds">00</div>
+                            <div class="countdown-label">Seconds</div>
+                        </div>
+                    </div>
+                    
                     <p class="text-center" style="color: var(--gray);">Launching on November 15, 2025 at 8:00 AM WAT</p>
                 </div>
             </div>
         </section>
 
+        <!-- Student Testimonial -->
+        <div class="testimonial fade-in">
+            <p class="testimonial-text">"As a medical student in Nigeria, I've struggled to find quality study resources. AlphaLearner's AI-powered approach is exactly what we need to level the playing field and compete globally."</p>
+            <div class="testimonial-author">Chinwe Okoro</div>
+            <div class="testimonial-role">Medical Student, University of Lagos</div>
+        </div>
+
         <!-- Features Section -->
         <section class="features">
-            <h2 class="section-title fade-in">Our Core Features</h2>
+            <h2 class="section-title fade-in">Designed for African Students</h2>
+            <p class="section-subtitle fade-in delay-1">Our AI-powered features are tailored to meet the unique challenges faced by students in Nigeria and across Africa.</p>
             <div class="features-grid">
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🧠</div>
-                    <h3 class="feature-title">AI Quiz Generator</h3>
-                    <p class="feature-description">Dynamic quizzes based on topic, past questions, and performance history with adaptive difficulty.</p>
+                    <h3 class="feature-title">Smart Quiz Generator</h3>
+                    <p class="feature-description">AI creates personalized quizzes based on your weak areas, past questions, and performance history with adaptive difficulty.</p>
                 </div>
                 <div class="feature-card fade-in delay-1">
-                    <div class="feature-icon">📝</div>
+                    <div class="feature-icon">📚</div>
                     <h3 class="feature-title">Topic Summarizer</h3>
-                    <p class="feature-description">Fast, digestible summaries for efficient revision and concept retention.</p>
+                    <p class="feature-description">Transform lengthy topics into concise, digestible summaries perfect for last-minute revision and concept retention.</p>
                 </div>
                 <div class="feature-card fade-in delay-2">
                     <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">AI Chat Assistant</h3>
-                    <p class="feature-description">Chat-based support for explanations, questions, and personalized study tips.</p>
+                    <h3 class="feature-title">AI Study Assistant</h3>
+                    <p class="feature-description">Get instant explanations, ask questions, and receive personalized study tips from our AI tutor available 24/7.</p>
                 </div>
                 <div class="feature-card fade-in delay-3">
                     <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Study Tracker</h3>
-                    <p class="feature-description">Track performance across subjects and topics with detailed analytics.</p>
+                    <h3 class="feature-title">Progress Tracker</h3>
+                    <p class="feature-description">Monitor your performance across subjects and topics with detailed analytics to identify areas for improvement.</p>
+                </div>
+                <div class="feature-card fade-in delay-1">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Offline Support</h3>
+                    <p class="feature-description">Study anytime, anywhere - even without internet connection. Download materials and take quizzes offline.</p>
+                </div>
+                <div class="feature-card fade-in delay-2">
+                    <div class="feature-icon">🎮</div>
+                    <h3 class="feature-title">Gamified Learning</h3>
+                    <p class="feature-description">Earn points, unlock achievements, and compete with friends to make studying more engaging and motivating.</p>
                 </div>
             </div>
         </section>
@@ -497,27 +825,46 @@
         <!-- CTA Section -->
         <section class="cta fade-in">
             <div class="cta-content">
-                <h2 class="cta-title">Get Notified at Launch</h2>
-                <p class="cta-description">Be among the first to experience AlphaLearner. Enter your email below and we'll notify you when we go live.</p>
+                <h2 class="cta-title">Join the Learning Revolution</h2>
+                <p class="cta-description">Be among the first to experience AlphaLearner. Enter your email below and we'll notify you as soon as we launch. Plus, early subscribers get exclusive benefits!</p>
                 
                 <form class="email-form" id="notify-form">
                     <input type="email" class="email-input" placeholder="Enter your email address" required>
-                    <button type="submit" class="notify-btn">Notify Me</button>
+                    <button type="submit" class="notify-btn">Notify Me at Launch</button>
                 </form>
                 <div class="form-status" id="form-status"></div>
+                
+                <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 8px; color: var(--gray); font-size: 0.9rem;">
+                        <span>✅</span> <span>No spam, ever</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; color: var(--gray); font-size: 0.9rem;">
+                        <span>✅</span> <span>Unsubscribe anytime</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; color: var(--gray); font-size: 0.9rem;">
+                        <span>✅</span> <span>Early access benefits</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
             <div class="footer-content">
-                <div class="copyright">
-                    &copy; <span id="current-year">2025</span> AlphaLearner Edusoft. Built for Nigerian students.
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">AL</div>
+                        <div class="logo-text">AlphaLearner</div>
+                    </div>
+                    <div class="copyright">
+                        &copy; <span id="current-year">2025</span> AlphaLearner Edusoft. Built for Nigerian students.
+                    </div>
                 </div>
                 <div class="social-links">
-                    <a href="#" class="social-link">Twitter</a>
-                    <a href="#" class="social-link">Instagram</a>
-                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
                 </div>
             </div>
         </footer>
@@ -539,6 +886,7 @@
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
                 document.getElementById('seconds').textContent = '00';
+                document.querySelector('.countdown-title').textContent = "We've launched!";
                 return;
             }
             
@@ -577,8 +925,8 @@
             }
             
             // In a real implementation, you would send this to your backend
-            statusElement.textContent = `Thank you! We'll notify you at ${email} when we launch.`;
-            statusElement.style.color = '#10b981';
+            statusElement.textContent = `Thank you! We've added ${email} to our early access list.`;
+            statusElement.style.color = '#4ade80';
             emailInput.value = '';
             
             // Reset status after 5 seconds
@@ -596,7 +944,7 @@
                 const elementVisible = 150;
                 
                 if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('active');
+                    element.style.animationPlayState = 'running';
                 }
             });
         };
@@ -604,6 +952,16 @@
         // Check on load and scroll
         window.addEventListener('load', fadeInOnScroll);
         window.addEventListener('scroll', fadeInOnScroll);
+        
+        // Add some interactive elements
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
     </script>
 </body>
 </html>
